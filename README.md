@@ -24,14 +24,14 @@ Or with Docker: `docker compose up --build`, then open http://localhost:8000/ (t
 | `AUDIT_DB` | Path of the SQLite audit database. Default is in-memory. |
 
 ## How it works
-
-```
-document -> extract_fields -> score_credit -> retrieve_policy -> draft_recommendation -> apply_gate
-                 |                                                                          |
-        low confidence / missing fields                                  requires_human?  yes -> PENDING_HUMAN (no final decision)
-        -> skip scoring, manual-review fallback                                           no  -> CLEARED
-```
-
+document
+  -> extract_fields
+  -> score_credit          (skipped if extraction is unreliable)
+  -> retrieve_policy
+  -> draft_recommendation
+  -> apply_gate
+       requires human?  yes: PENDING_HUMAN (no decision released)
+                        no:  CLEARED
 | Control | Where | Behaviour |
 |---|---|---|
 | Human approval | `guardrails.py`, `agent.py` | Declines, manual-review cases, loans over KES 1M, medium or high risk bands, out-of-range inputs and suspected injection never get a final decision without a named officer. Overrides need a written justification. |
