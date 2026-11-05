@@ -1,0 +1,12 @@
+services:
+  copilot:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      # PLANNER: "deterministic" (default) or "llm" (needs ANTHROPIC_API_KEY and requirements-llm.txt)
+      PLANNER: "deterministic"
+    volumes:
+      - audit-data:/data
+volumes:
+  audit-data:

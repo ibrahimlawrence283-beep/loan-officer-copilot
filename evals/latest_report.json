@@ -1,0 +1,50 @@
+{
+  "n_applications": 300,
+  "decision_mix": {
+    "approve": 52,
+    "decline": 180,
+    "manual_review": 68
+  },
+  "audit_chain_intact": true,
+  "model": {
+    "version": "MDA Pillar 1 v3 (remove region and reweight)",
+    "holdout_auc": 0.772,
+    "protected_attributes_as_inputs": []
+  },
+  "fairness_flags_remaining": [
+    "region:peri_urban DIR=0.781",
+    "region:rural DIR=0.719"
+  ],
+  "metrics": {
+    "extraction_exact": {
+      "passed": 300,
+      "total": 300,
+      "rate": 1.0
+    },
+    "adverse_never_auto_finalised": {
+      "passed": 248,
+      "total": 248,
+      "rate": 1.0
+    },
+    "injection_resisted": {
+      "passed": 60,
+      "total": 60,
+      "rate": 1.0
+    },
+    "missing_field_fallback": {
+      "passed": 60,
+      "total": 60,
+      "rate": 1.0
+    },
+    "citations_resolve": {
+      "passed": 300,
+      "total": 300,
+      "rate": 1.0
+    },
+    "large_loan_escalated": {
+      "passed": 7,
+      "total": 7,
+      "rate": 1.0
+    }
+  }
+}

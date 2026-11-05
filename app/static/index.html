@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; img-src 'self' data:; base-uri 'none'">
+  <title>Loan officer workbench</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Loan officer workbench</h1>
+    <nav class="tabs" aria-label="Views">
+      <button type="button" class="tab" id="tab-cases" aria-pressed="true">Cases</button>
+      <button type="button" class="tab" id="tab-audit" aria-pressed="false">Model audit</button>
+    </nav>
+    <div class="top-status" id="status" aria-live="polite"></div>
+  </header>
+
+  <main class="layout" id="view-cases">
+    <aside class="queue" aria-label="Cases">
+      <div class="queue-head">
+        <div>
+          <h2>Cases</h2>
+          <p class="muted small" id="queue-count"></p>
+        </div>
+        <button type="button" class="btn primary" id="new-case">New assessment</button>
+      </div>
+      <div id="queue-list"></div>
+    </aside>
+    <section id="detail" class="detail" aria-live="polite"></section>
+  </main>
+
+  <main class="audit-view" id="view-audit" hidden></main>
+
+  <dialog id="intake" aria-labelledby="intake-title">
+    <h2 id="intake-title">New assessment</h2>
+    <p class="muted">Paste an application document, or load a sample. Samples use synthetic data.</p>
+    <div class="samples" id="samples" role="group" aria-label="Sample applications"></div>
+    <label for="doc-text">Application document</label>
+    <textarea id="doc-text" rows="11" spellcheck="false"></textarea>
+    <p class="error" id="intake-error" role="alert"></p>
+    <div class="dialog-actions">
+      <button type="button" class="btn" id="intake-cancel">Cancel</button>
+      <button type="button" class="btn primary" id="intake-run">Run assessment</button>
+    </div>
+  </dialog>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
